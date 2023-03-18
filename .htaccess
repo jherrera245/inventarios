@@ -1,0 +1,123 @@
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+#rutas para login
+RewriteRule ^login$ index.php
+RewriteRule ^login/session$ modules/modulo-session.php
+RewriteRule ^login/(.*)$ modules/modulo-session.php?logout=$1
+
+#ruta index admin
+RewriteRule ^admin$ views/admin/index.php
+
+#rutas para las vistas modulo de categorias
+RewriteRule ^categorias$ views/admin/categorias/index.categorias.php
+RewriteRule ^categorias/create$ views/admin/categorias/create.categorias.php
+RewriteRule ^categorias/([0-9]+)/edit$ views/admin/categorias/edit.categorias.php?id=$1
+
+#rutas para el manteniento de la tabla categorias
+RewriteRule ^categorias/save$ modules/modulo-categorias.php
+RewriteRule ^categorias/([0-9]+)/update$ modules/modulo-categorias.php?id=$1
+RewriteRule ^categorias/([0-9]+)/delete$ modules/modulo-categorias.php?id=$1&action=delete
+
+#rutas para las vistas modulo de conceptos
+RewriteRule ^conceptos$ views/admin/conceptos/index.conceptos.php
+RewriteRule ^conceptos/create$ views/admin/conceptos/create.conceptos.php
+RewriteRule ^conceptos/([0-9]+)/edit$ views/admin/conceptos/edit.conceptos.php?id=$1
+
+#rutas para el manteniento de la tabla conceptos
+RewriteRule ^conceptos/save$ modules/modulo-conceptos.php
+RewriteRule ^conceptos/([0-9]+)/update$ modules/modulo-conceptos.php?id=$1
+RewriteRule ^conceptos/([0-9]+)/delete$ modules/modulo-conceptos.php?id=$1&action=delete
+
+#rutas para las vistas modulo de productos
+RewriteRule ^productos$ views/admin/productos/index.productos.php
+RewriteRule ^productos/create$ views/admin/productos/create.productos.php
+RewriteRule ^productos/([0-9]+)/edit$ views/admin/productos/edit.productos.php?id=$1
+
+#rutas para el manteniento de la tabla productos
+RewriteRule ^productos/save$ modules/modulo-productos.php
+RewriteRule ^productos/([0-9]+)/update$ modules/modulo-productos.php?id=$1
+RewriteRule ^productos/([0-9]+)/delete$ modules/modulo-productos.php?id=$1&action=delete
+
+#rutas para las vistas modulo de proveedores
+RewriteRule ^proveedores$ views/admin/proveedores/index.proveedores.php
+RewriteRule ^proveedores/create$ views/admin/proveedores/create.proveedores.php
+RewriteRule ^proveedores/([0-9]+)/edit$ views/admin/proveedores/edit.proveedores.php?id=$1
+
+#rutas para el manteniento de la tabla proveedores
+RewriteRule ^proveedores/save$ modules/modulo-proveedores.php
+RewriteRule ^proveedores/([0-9]+)/update$ modules/modulo-proveedores.php?id=$1
+RewriteRule ^proveedores/([0-9]+)/delete$ modules/modulo-proveedores.php?id=$1&action=delete
+
+#rutas para las vistas modulo de practicantes
+RewriteRule ^practicantes$ views/admin/practicantes/index.practicantes.php
+RewriteRule ^practicantes/create$ views/admin/practicantes/create.practicantes.php
+RewriteRule ^practicantes/([0-9]+)/edit$ views/admin/practicantes/edit.practicantes.php?id=$1
+
+#rutas para el manteniento de la tabla practicantes
+RewriteRule ^practicantes/save$ modules/modulo-practicantes.php
+RewriteRule ^practicantes/([0-9]+)/update$ modules/modulo-practicantes.php?id=$1
+RewriteRule ^practicantes/([0-9]+)/delete$ modules/modulo-practicantes.php?id=$1&action=delete
+
+#rutas para las vistas modulo de ingresos
+RewriteRule ^ingresos$ views/admin/ingresos/index.ingresos.php
+RewriteRule ^ingresos/create$ views/admin/ingresos/create.ingresos.php
+RewriteRule ^ingresos/([0-9]+)/show$ views/admin/ingresos/show.ingresos.php?id=$1
+
+#rutas para el manteniento de la tabla ingresos
+RewriteRule ^ingresos/save$ modules/modulo-ingresos.php
+RewriteRule ^ingresos/([0-9]+)/delete$ modules/modulo-ingresos.php?id=$1&action=delete
+
+#rutas para las vistas modulo de prestamos - admin
+RewriteRule ^prestamos/admin$ views/admin/prestamos/index.prestamos.admin.php
+RewriteRule ^prestamos/admin/create$ views/admin/prestamos/create.prestamos.admin.php
+RewriteRule ^prestamos/admin/([0-9]+)/show$ views/admin/prestamos/show.prestamos.admin.php?id=$1
+RewriteRule ^prestamos/admin/([0-9]+)/retorno$ views/admin/prestamos/retorno.prestamos.admin.php?id=$1
+
+#rutas para el manteniento de la tabla prestamos - admin
+RewriteRule ^prestamos/admin/save$ modules/modulo-prestamos-admin.php
+RewriteRule ^prestamos/admin/([0-9]+)/return$ modules/modulo-prestamos-admin.php?id=$1
+RewriteRule ^prestamos/admin/([0-9]+)/delete$ modules/modulo-prestamos-admin.php?id=$1&action=delete
+
+#rutas para la geracion de reportes de la tabla prestamos - admin
+RewriteRule ^prestamos/reportes/([0-9]+)/pdf$ modules/pdf-prestamos.php?id=$1
+
+#carga dinamica de productos
+RewriteRule ^onload/productos$ modules/onload-productos.php
+
+#rutas para las vistas modulo de usuarios
+RewriteRule ^usuarios$ views/admin/usuarios/index.usuarios.php
+RewriteRule ^usuarios/create$ views/admin/usuarios/create.usuarios.php
+RewriteRule ^usuarios/([0-9]+)/edit$ views/admin/usuarios/edit.usuarios.php?id=$1
+
+#rutas para el manteniento de la tabla usuarios
+RewriteRule ^usuarios/save$ modules/modulo-usuarios.php
+RewriteRule ^usuarios/([0-9]+)/update$ modules/modulo-usuarios.php?id=$1
+RewriteRule ^usuarios/([0-9]+)/delete$ modules/modulo-usuarios.php?id=$1&action=delete
+
+#administracion de roles de usuario
+RewriteRule ^rol/change$ modules/modulo-roles.php
+RewriteRule ^usuarios/([0-9]+)/rol$ views/admin/usuarios/rol.usuarios.php?id=$1
+
+#rutas practicante
+RewriteRule ^practicante$ views/practicante/index.php
+
+#rutas para las vistas modulo de prestamos - practicante
+RewriteRule ^prestamos/practicante$ views/practicante/prestamos/index.prestamos.practicante.php
+RewriteRule ^prestamos/practicante/create$ views/practicante/prestamos/create.prestamos.practicante.php
+RewriteRule ^prestamos/practicante/([0-9]+)/show$ views/practicante/prestamos/show.prestamos.practicante.php?id=$1
+RewriteRule ^prestamos/practicante/([0-9]+)/retorno$ views/practicante/prestamos/retorno.prestamos.practicante.php?id=$1
+
+#rutas para el manteniento de la tabla prestamos - practicante
+RewriteRule ^prestamos/practicante/save$ modules/modulo-prestamos-practicante.php
+RewriteRule ^prestamos/practicante/([0-9]+)/return$ modules/modulo-prestamos-practicante.php?id=$1
+RewriteRule ^prestamos/practicante/([0-9]+)/delete$ modules/modulo-prestamos-practicante.php?id=$1&action=delete
+
+#rutas para home admin
+RewriteRule ^home/admin/totales$ modules/modulo-home-admin.php
+RewriteRule ^home/practicante/totales$ modules/modulo-home-practicante.php
+
+#rutas para home perfil
+RewriteRule ^perfil$ views/perfil/users.profile.php
+RewriteRule ^perfil/([0-9]+)/update$ modules/modulo-profile-user.php?id=$1
