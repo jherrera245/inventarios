@@ -2,6 +2,10 @@ RewriteEngine On
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
+#Rutas para el API
+RewriteRule ^api/login$ api/auth.php
+RewriteRule ^api/productos$ api/productos.php
+
 #rutas para login
 RewriteRule ^login$ index.php
 RewriteRule ^login/session$ modules/modulo-session.php
